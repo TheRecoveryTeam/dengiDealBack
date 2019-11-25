@@ -1,0 +1,13 @@
+{
+  "port": 8080,
+
+  "mongoUri": "mongodb://localhost:27017",
+  "mongoDb": "psychotest2",
+
+  "jwtSecret": "some secret key",
+
+  "combinedLog": "./logs/combined",
+  "errorLog": "./logs/error",
+
+  "vkSecret": "ZIyYuCTX026Tit0DZLHM"
+}

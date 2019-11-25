@@ -1,0 +1,9 @@
+.idea/
+node_modules
+error.log
+combined.log
+callback_mock/env
+temp
+media
+logs
+upload

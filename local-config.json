@@ -1,0 +1,13 @@
+{
+  "port": 8080,
+
+  "mongoUri": "mongodb://127.0.0.1:27017",
+  "mongoDb": "android-backend",
+
+  "jwtSecret": "some secret key",
+
+  "combinedLog": "./logs/combined",
+  "errorLog": "./logs/error",
+
+  "vkSecret": "ZIyYuCTX026Tit0DZLHM"
+}
