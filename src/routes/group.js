@@ -28,10 +28,19 @@ module.exports = (router, prefix) => {
             const users_ids = groups[i].users_ids;
             if (users_ids.length !== 0) {
                 const users = await ctx.store.users.getUsers(users_ids);
-                console.log('users', users);
                 groups[i].users = users;
             } else {
                 groups[i].users = [];
+            }
+        }
+
+        for (let i = 0; i < groups.length; ++i) {
+            const checks_ids = groups[i].checks_ids;
+            if (checks_ids.length !== 0) {
+                const checks = await ctx.store.checks.getChecks(checks_ids);
+                groups[i].checks = checks;
+            } else {
+                groups[i].checks = [];
             }
         }
 
