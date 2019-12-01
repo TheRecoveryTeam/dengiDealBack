@@ -5,9 +5,19 @@ class UserStore extends Store {
         return this.ctx.db.collection('users');
     }
 
-    async login(data) {
+    async register(data) {
         const user = await this.collection.findOne({ login: data.login });
-        return !user ? await this.addUser(data) : user;
+        if (user) {
+            return false;
+        }
+
+        return await this.addUser(data);
+    }
+
+    async login({ login, password }) {
+        const user = await this.collection.findOne({ login, password });
+
+        return !!user;
     }
 
     async get(login) {

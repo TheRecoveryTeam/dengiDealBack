@@ -7,13 +7,9 @@ const ExtractJwt = require('passport-jwt').ExtractJwt; // авторизация
 const jwt = require('jsonwebtoken');
 const Response = require('../api/response');
 const CustomStrategy = passportCustom.Strategy;
-const urlLib = require('url');
-
-const { vkVerifySign } = require('../utils/verifyVkSign');
 
 const init = (app, config) => {
     passport.use('custom-strategy', new CustomStrategy(async (req, done) => {
-        console.log(req.body);
         const { login, password } = req.body;
           if (login.length !== 0 && password.length !== 0) {
               done(null, {
@@ -32,7 +28,7 @@ const init = (app, config) => {
         passReqToCallback: true
     }, async function ({ ctx }, payload, done) {
         try {
-            const user = await ctx.store.users.get(payload.userId);
+            const user = await ctx.store.users.get(payload.login);
 
             return done(null, user);
         } catch (e) {
