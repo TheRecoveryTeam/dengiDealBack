@@ -7,6 +7,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt; // авторизация
 const jwt = require('jsonwebtoken');
 const Response = require('../api/response');
 const CustomStrategy = passportCustom.Strategy;
+const ERROR_MESSAGES = require('../config/errors');
 
 const init = (app, config) => {
     passport.use('custom-strategy', new CustomStrategy(async (req, done) => {
@@ -66,7 +67,7 @@ const setupCurrentUser = async (ctx, next) => {
 
 const authorized = () => async (ctx, next) => {
     if (!ctx.currentUser) {
-        new Response(ctx).error(401, {}).write();
+        new Response(ctx).error(401, {message: ERROR_MESSAGES.UNAUTHORIZED}).write();
     } else {
         await next();
     }

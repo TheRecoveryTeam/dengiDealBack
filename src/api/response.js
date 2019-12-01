@@ -26,9 +26,9 @@ class Response {
         if (this.status === 'ok') {
             this.ctx.logger.info(`send 200`);
             this.ctx.body = {
-                // status: this.status,
-                // data: this.data
-                ...this.data
+                status: this.status,
+                data: this.data
+                // ...this.data
             };
         } else {
             const {
