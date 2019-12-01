@@ -1,7 +1,9 @@
 const users = require('./user');
-const states = require('./state');
+const groups = require('./group');
+const checks = require('./check');
 
 module.exports = {
     users,
-    states
+    groups,
+    checks
 };

@@ -15,20 +15,19 @@ class Response {
         return this;
     }
 
-    success(data = {}) {
-        this.status = 'ok';
+    success(data = {}, status = 'ok') {
+        this.status = status;
         this.data = { ...this.data, ...data };
 
         return this;
     }
 
     write() {
-        if (this.status === 'ok') {
+        if (!this.data.statusCode) {
             this.ctx.logger.info(`send 200`);
             this.ctx.body = {
                 status: this.status,
                 data: this.data
-                // ...this.data
             };
         } else {
             const {

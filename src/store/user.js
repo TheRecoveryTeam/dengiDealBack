@@ -17,7 +17,7 @@ class UserStore extends Store {
     async login({ login, password }) {
         const user = await this.collection.findOne({ login, password });
 
-        return !!user;
+        return user ? user : null;
     }
 
     async get(login) {
@@ -27,9 +27,33 @@ class UserStore extends Store {
     async addUser(user) {
         const response =  await this.collection.insertOne({
          ...user,
+        first_name: '',
+        last_name: '',
+        avatar: '',
+        groups_ids: [],
+        checks_ids: []
         });
 
         return response.ops[0];
+    }
+
+    async addGroup(login, groupId) {
+        await this.collection.updateOne({ login },
+            { $push: { groups_ids: groupId } }
+        );
+    }
+
+    async getGroupsIds(login) {
+        return this.collection.findOne({ login }, {
+            projection: { groups_ids: 1, _id: 0 }
+        })
+    }
+
+    async getUsers(users_ids) {
+        return await this.collection
+            .find({ _id: { $in: users_ids }})
+            .project({ login: 1, avatar: 1, first_name: 1, last_name: 1 })
+            .toArray();
     }
 }
 
