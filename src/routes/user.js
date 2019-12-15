@@ -8,9 +8,12 @@ const ERROR_MESSAGES = require('../config/errors');
 
 module.exports = (router, prefix) => {
     router.post(`${prefix}register`, async (ctx, next) => {
+
         ctx.validate({
             login: 'string',
-            password: 'string'
+            password: 'string',
+            first_name: 'string',
+            last_name: 'string'
         });
 
         await passport.authenticate('custom-strategy', async function (error, user) {
@@ -37,6 +40,7 @@ module.exports = (router, prefix) => {
     });
 
     router.post(`${prefix}login`, async ctx => {
+
         ctx.validate({
             login: 'string',
             password: 'string'
@@ -64,5 +68,6 @@ module.exports = (router, prefix) => {
         new Response(ctx).success({
             user
         }).write();
-    })
+    });
+
 };

@@ -27,8 +27,6 @@ class UserStore extends Store {
     async addUser(user) {
         const response =  await this.collection.insertOne({
          ...user,
-        first_name: '',
-        last_name: '',
         avatar: '',
         groups_ids: [],
         checks_ids: []

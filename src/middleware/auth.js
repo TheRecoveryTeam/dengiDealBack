@@ -11,11 +11,13 @@ const ERROR_MESSAGES = require('../config/errors');
 
 const init = (app, config) => {
     passport.use('custom-strategy', new CustomStrategy(async (req, done) => {
-        const { login, password } = req.body;
+        const { login, password, first_name, last_name } = req.body;
           if (login.length !== 0 && password.length !== 0) {
               done(null, {
                   login,
-                  password
+                  password,
+                  first_name,
+                  last_name
               });
           } else {
               done (null, false)
