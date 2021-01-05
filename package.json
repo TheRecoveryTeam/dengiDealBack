@@ -8,7 +8,7 @@
     "local": "NODE_ENV=production node scripts/script.js --config ../local-config.json"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "command-line-args": "^5.0.2",
     "form-data": "^2.3.2",
     "jsonwebtoken": "^8.3.0",
